@@ -36,32 +36,45 @@
 {% endblock %}
 
 {% block content %}
-<h2 class="title">도서관 회원가입</h2>
-<hr>
-<div class="card">
-    <div class="card-body">
-        <div class="mb-3 row">
-            <label class="col-sm-2 col-form-label">Email</label>
-            <div class="col-sm-10">
-                <input type="email" id='userId' class="form-control" placeholder="Email">
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label class="col-sm-2 col-form-label">Password</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" id="userPw" placeholder="Password">
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label class="col-sm-2 col-form-label">Password Check</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" id="userPw2" placeholder="동일한 Password">
-            </div>
-        </div>
-        <button class="btn btn-primary" onclick=regist()>회원가입하기</button>
-        <a href="/main" class="btn btn-primary">로그인하기</a>
-    </div>
-</div>
-<hr>
+<form action="{{ url_for('adduser') }}" method="POST">
 
+    <h2 class="title">도서관 회원가입</h2>
+    <hr>
+    <div class="card">
+        <div class="card-body">
+            <div class="mb-4 row">
+                <label class="col-sm-3 col-form-label">이름</label>
+                <div class="col-sm-10">
+                    <input type="text" id='name' class="form-control" placeholder="이름">
+                </div>
+            <div class="mb-4 row">
+                <label class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" id='userId' class="form-control" placeholder="Email">
+                </div>
+            </div>
+            <div class="mb-4 row">
+                <label class="col-sm-3 col-form-label">Password</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="userPw" placeholder="Password">
+                </div>
+            </div>
+            <div class="mb-4 row">
+                <label class="col-sm-3 col-form-label">Password Check</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="userPw2" placeholder="동일한 Password">
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-primary" onclick=regist()>회원가입하기</button>
+            </div>
+            <p></p>
+            <div>
+                <a href="/main" class="btn btn-primary">로그인하기</a>
+            </div>
+        </div>
+    </div>
+    <hr>
+</form>
 {% endblock %}
+    

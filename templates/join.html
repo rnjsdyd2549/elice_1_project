@@ -3,6 +3,7 @@
 {% block scripts %}
 <script>
     function regist() {
+        let user_name = $("#userName").val()
         let user_id = $("#userId").val()
         let user_pw = $("#userPw").val()
         let user_pw2 = $("#userPw2").val()
@@ -70,7 +71,7 @@
             </div>
             <p></p>
             <div>
-                <a href="/main" class="btn btn-primary">로그인하기</a>
+                <a href="/" class="btn btn-primary">로그인하기</a>
             </div>
         </div>
     </div>

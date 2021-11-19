@@ -8,9 +8,11 @@ app = Flask(__name__)
 app.register_blueprint(bp)
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:ajtnlaka3!@127.0.0.1:5000/Library"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:ajtnlaka3!@127.0.0.1:5000/project_L"
 
 db.init_app(app)
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+    

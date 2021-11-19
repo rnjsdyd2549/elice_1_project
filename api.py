@@ -10,9 +10,9 @@ def home_login():
 def register():
     return render_template('join.html')
 
-@bp.route('/join', method=['POST'])
+@bp.route('/join', methods=['POST'])
 def adduser():
-    name =request.form['name']
+    userName =request.form['userName']
     userId = request.form['userId']
     userPw = request.form['userPw']
     userPw2 = request.form['userPw2']
@@ -23,9 +23,9 @@ def adduser():
     
 @bp.route('/main')
 def main():
-    # with sql.connect('tb_book_info.db') as con:
-    #     cur =con.cursor()
-    #     cur.execute('SELECT * FROM tb_book_info')
-    #     result = cur.fetchall()
-    #     print(result)
+    with sql.connect('tb_book_info.db') as con:
+        cur =con.cursor()
+        cur.execute('SELECT * FROM tb_book_info')
+        result = cur.fetchall()
+        print(result)
     return render_template('main.html')

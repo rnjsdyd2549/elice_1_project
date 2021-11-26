@@ -4,8 +4,27 @@
 <!-- scripts block과 필요한 코드를 작성하세요. -->
 {% block scripts %}
 <script>
-    function login(){
-        alert("로그인!")
+	function login() {
+        let user_id = $("#userId").val()
+        let user_pw = $("#userPw").val()
+        
+        $.ajax({
+            url: '/index',
+            type: 'post',
+            data: {
+                'user_id': user_id,
+                'user_pw': user_pw
+            },
+            success: function (res) {
+                if (res['result'] == 'success') {
+                    alert("로그인 성공")
+                    window.location.href = '/'
+                } else {
+                    alert("로그인 실패!")
+                    window.location.reload()
+                }
+            }
+        })
     }
 </script>
 {% endblock %}
@@ -27,7 +46,7 @@
                             <input type="password" class="form-control" id="userPw" placeholder="Password">
                     </div>
             </div>
-            <button class="btn btn-primary" onclick=login()>로그인하기</button>
+            <button class="btn btn-primary" type="submit">로그인하기</button>
             <a href="/join" class="btn btn-primary">회원가입하기</a>
     </div>
 </div>

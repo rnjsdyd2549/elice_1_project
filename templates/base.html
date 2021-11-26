@@ -18,6 +18,16 @@
     </style>
     {% block scripts %}
     {% endblock %}
+    <script>
+        $(document).ready(function () {
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              alert('{{ messages[0]}}')
+            {% endif %}
+          {% endwith %}
+        })
+      </script>
+    
 </head>
 
 <body>

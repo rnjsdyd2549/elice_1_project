@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% block title %}로그인 페이지{% endblock %}
 {% block page_content %}
 <form action="{{ url_for('main.login') }}" method="post">
     <input type="email" name="user_email" placeholder="아이디 입력" >

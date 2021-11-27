@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block title %}엘리스 도서관{% endblock %}
 {% block content %}
 <div>
     {% if book_list %}
@@ -6,7 +7,7 @@
         <div class="album py-5 bg-light">
             <div class="container">
                 
-                <div class="row">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     <div class="col-md-4">
                         <div class="card mb-4 box-shadow">
                             <img src="{{ url_for('static', filename=book.img_path) }}" alt="책이미지">
@@ -18,7 +19,7 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary" href="{{ book.link }}">구매하기</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='{{ book.link }}'" >구매하기</button>
                                     </div>
                                     <small class="text-muted">9 mins</small>
                                 </div>

@@ -1,33 +1,42 @@
 {% extends 'base.html' %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% block scripts %}
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>레이서 도서관 책 목록</title>
-    {% endblock %}  
-</head>
 {% block content %}
-책목록아 나와라
-<div class="grid gap-6 p-3 grid-cols-4 w-full">
-    {% for book in books %}
-            <form method="post">
-        <div class="w-full pl-5 pr-5 relative border-box">
-            <div
-                    class="w-full h-96 text-center flex flex-col flex-gap-3 items-center border-solid border-2 border-gray-300 p-2 bg-white">
-                <a href="/book_list/{{ book.id }}" class="block mt-2">{{ book.name }}</a>
-                <span class="block  mt-2">{{ book.stack }}권 남음</span>
-                <input type="hidden" name="book_id" value="{{ book.id }}">
-                <button
-                    class="absolute bottom-3 mt-2 w-9/12 py-2 px-4 bg-purple-500 text-white font-semibold rounded-lg shadow-md focus:outline-none">
-                대여하기
-                </button>
+<div>
+    {% if book_list %}
+        {% for book in book_list %}
+        <div class="album py-5 bg-light">
+            <div class="container">
+                
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <div class="card-body">
+                                <img src="{{ book.img_path }}" alt="책이미지">
+                                <p></p>
+                                <a href="/books/{{ book.id }}" class="block mt-2">{{ book.book_name }}</a>
+                                <p class="card-text">평점: {{ book.score }}</p>
+                                <p class="card-text">수량: {{ book.stack }}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" href="{{ book.link }}">구매하기</button>
+                                    </div>
+                                    <small class="text-muted">9 mins</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            </form>
-    {% endfor %}
+        </div> 
+        {% endfor %}
 </div>
+    {% else %}
+        <p>책이 없어요</p>
+    {% endif %}
+    
+    {% if session['user_email'] %}
+    <p>안녕하세요, {{ session['name'] }}님!</p>
+    {% else %}
+    <p>로그인 되지 않았습니다.</p>
+    {% endif %}
 {% endblock %}
-</html>

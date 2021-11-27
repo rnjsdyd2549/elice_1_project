@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<form action="{{ url_for('main.login') }}" method="post">
+    <input type="email" name="user_email" placeholder="아이디 입력" >
+    <input name="password" type="password" placeholder="비밀번호 입력">
+    <input type="submit" value="로그인!">
+</form>
+{% endblock %}

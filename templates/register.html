@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block scripts %}
+<script>
+
+</script>
+{% endblock %}
+
+{% block content %}
+<div>
+    <form action="{{ url_for('main.register') }}" method="POST">
+        <h2>회원가입</h2>
+        <p>name<br/>
+            <input type="text" name="name" placeholder="이름"/>
+        </p>
+        <p>email<br/>
+            <input type="email" name="user_email" placeholder="아이디가 됩니다." />
+        </p>
+        <p>password<br/>
+            <input type="password" name="password" placeholder="password"/>
+        </p>
+        <p>passowrd2<br/>
+            <input type="password" name="password2" placeholder="동일하게 입력해주세요." />
+        </p>
+        <p>
+            <input type="submit" value="회원가입">
+        </p>
+    </form>
+</div>
+{% endblock %}

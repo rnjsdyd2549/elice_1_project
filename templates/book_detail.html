@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}책 소개페이지{% endblock %}
+
+{% block page_content %}
+<div class="album py-5 bg-light">
+    <div class="container py-4">
+        <div class="p-5 mb-4 bg-light rounded-3">
+            <div class="container-fluid py-5">
+              <h4 class="display-5 fw-bold">{{ book.book_name }}</h4>
+              <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <img src="{{ url_for('static', filename=book.img_path) }}" alt="책이미지">
+                        <div class="card-body">
+                        </div>
+                </div>
+              </div>  
+              <p class="col-md-8 fs-4">{{ book.description }}</p>
+            </div>
+          </div>
+      
+          <div class="row align-items-md-stretch">
+            <div class="col-md-6">
+              <div class="h-100 p-5 text-white bg-dark rounded-3">
+                <h3>저자: {{ book.author }}</h3>
+                <p>출간일: {{ book.publication_date }}</p>
+                <p>출판사: {{ book.publisher }}</p>
+                <p>페이지수: {{ book.pages }}</p>
+                <p>ISBN: {{ book.isbn }}</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="h-100 p-5 bg-light border rounded-3">
+                <h2>한 줄 평</h2>
+                <p></p>
+                <button class="btn btn-outline-secondary" type="button">Example button</button>
+              </div>
+            </div>
+          </div>
+    </div>
+</div> 
+{% endblock %}

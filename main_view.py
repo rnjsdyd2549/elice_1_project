@@ -85,4 +85,4 @@ def book_detail(book_id):
         flash("책을 찾을 수 없습니다.")
         return redirect('/')
     
-    return 'hhh'
+    return render_template('book_detail.html', book=book)

@@ -1,6 +1,7 @@
 from os import name
 from flask import Blueprint, render_template, request, url_for, session, redirect
 from flask.helpers import flash
+from flask_login import current_user
 from models import *
 from werkzeug.security import generate_password_hash, check_password_hash
 # 폴더.파일 명
@@ -10,7 +11,6 @@ bp = Blueprint('main', __name__, url_prefix='/')
 @bp.route('/')
 def home():
     book_list = book_info.query.order_by(book_info.id.asc())
-    print(book_list)
     return render_template('main.html', book_list=book_list)
 
 @bp.route('/main')
@@ -71,8 +71,33 @@ def logout():
     return redirect(url_for('main.home'))
 
 @bp.route('/rent')
-def rent():
-    return '대여목록들을 보여주세요'
+def rent(book_id):
+    
+    if 'user_email' not in session:
+        flash('로그인후 이용해주세요.')
+        return redirect(url_for('main.home'))
+    else:
+        user_email = session['user_email']
+        status_info = book_rent.query.filter_by(book_id=book_id, user_email=user_email).first()
+        book_status = book_info.query.filter_by(id=book_id).first()
+
+        if(book_status.stack == 0):
+            flash(f"[{book_info.book_name}] 은 재고가 없습니다.")
+
+        elif(status_info is not None):
+            flash(f"[{book_info.book_name}] 은 이미 대여했습니다.")
+
+        else:
+            if(book_status.stack > 0):
+                book_status.stack = book_status.stack - 1
+                id = book_status.book_id
+                email = session['user_email']
+                status = book_rent(id, email)
+                db.session.add(status)
+                db.session.commit()
+                flash(f"[{book_info.book_name}] 을 빌렸습니다.")
+
+    return redirect(url_for('main.home'))
 
 @bp.route('/return')
 def book_return():
